@@ -33,3 +33,8 @@ files {
 }
 
 ui_page 'html/index.html'
+
+dependencies {
+	'qb-core',
+	'qb-vehiclekeys'
+}
