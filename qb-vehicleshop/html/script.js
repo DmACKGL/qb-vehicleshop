@@ -166,11 +166,11 @@ function menuVehicle(event) {
 
     dataVehicles = [] 
     
-    $.post('http://qb-vehicleshop/menuSelected', JSON.stringify({menuId: categoryVehicleSelected.toLowerCase()}));
+    $.post('https://qb-vehicleshop/menuSelected', JSON.stringify({menuId: categoryVehicleSelected.toLowerCase()}));
 }
 
 function testDrive(){
-    $.post('http://qb-vehicleshop/TestDrive', JSON.stringify({vehicleModel: vehicleSelected.modelcar}));    
+    $.post('https://qb-vehicleshop/TestDrive', JSON.stringify({vehicleModel: vehicleSelected.modelcar}));    
     $('body').css("display","none");
 }
 
@@ -219,7 +219,7 @@ function buyVehicle(option) {
         case 'cancel':
             break;
         case 'confirm':
-            $.post('http://qb-vehicleshop/Buy', JSON.stringify(vehicleSelected));
+            $.post('https://qb-vehicleshop/Buy', JSON.stringify(vehicleSelected));
             break;
     }   
 }
@@ -231,7 +231,7 @@ var scrollAmount = 0
 $(document).on('keydown', function() {
     switch(event.keyCode) {
         case 27: // ESC
-            $.post('http://qb-vehicleshop/Close');
+            $.post('https://qb-vehicleshop/Close');
             $('body').css("display","none");
             document.getElementById("top-menu").innerHTML = '';       
             break;
@@ -240,10 +240,10 @@ $(document).on('keydown', function() {
         case 17: // TAB
             break;
         case 68: // LEFT A
-            $.post('http://qb-vehicleshop/rotate', JSON.stringify({key: "left"}))
+            $.post('https://qb-vehicleshop/rotate', JSON.stringify({key: "left"}))
             break;            
         case 65: // RIGHT D
-            $.post('http://qb-vehicleshop/rotate', JSON.stringify({key: "right"}))
+            $.post('https://qb-vehicleshop/rotate', JSON.stringify({key: "right"}))
             break;
         case 39: 
             scrollAmount = scrollAmount + 300
@@ -283,7 +283,7 @@ $(document).on('keydown', function(ev) {
     }
 
     if (_key) {
-        $.post('http://qb-vehicleshop/rotate', JSON.stringify({key: _key}))
+        $.post('https://qb-vehicleshop/rotate', JSON.stringify({key: _key}))
     }
 
 });
@@ -367,7 +367,7 @@ $(document).on('mousedown', ".item-cars", function(event){
 
                 //vehicleSelected = JSON.stringify({ brand: dataCar[0].outerText, modelcar: dataCar[8].outerText, price: dataCar[6].outerText })   
                 
-                $.post("http://qb-vehicleshop/SpawnVehicle", JSON.stringify({ modelcar: dataCar[9].outerText, price: dataCar[7].outerText }));
+                $.post("https://qb-vehicleshop/SpawnVehicle", JSON.stringify({ modelcar: dataCar[9].outerText, price: dataCar[7].outerText }));
 
 
                 if (dataCar[7].outerText < 1) {
@@ -449,9 +449,9 @@ function openOption(option){
 // function setVehicleColorRGB(R,G,B){
     
 //     if (selectedColor == 'primary'){
-//         $.post("http://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: true, R: R, G: G, B: B}));
+//         $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: true, R: R, G: G, B: B}));
 //     } else {
-//         $.post("http://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: false, R: R, G: G, B: B}));
+//         $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: false, R: R, G: G, B: B}));
 //     }
 
 // }

@@ -97,10 +97,10 @@ for (const [theme, config] of themes) {
         //    console.log('Event: "init"', instance);
         }).on('save', (color, instance) => {
           //  console.log('Event: "save"', color, instance);
-            $.post("http://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: config.type, color: color.toRGBA()}));
+            $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: config.type, color: color.toRGBA()}));
         }).on('change', (color, source, instance) => {
           //  console.log('Event: "change"', color, source, instance);
-            $.post("http://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: config.type, color: color.toRGBA()}));
+            $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: config.type, color: color.toRGBA()}));
         })
     });
 
