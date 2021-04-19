@@ -4,7 +4,7 @@ const themes = [
     [
         'nano',
         {
-            name: "Cor primária",
+            name: "Primary Color",
             swatches: [
                 'rgba(244, 67, 54, 1)',
                 'rgba(233, 30, 99, 0.95)',
@@ -35,7 +35,7 @@ const themes = [
     [
         'nano',
         {
-            name: "Cor secundária",
+            name: "Secondary Color",
             swatches: [
                 'rgba(244, 67, 54, 1)',
                 'rgba(233, 30, 99, 0.95)',

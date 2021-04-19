@@ -446,13 +446,12 @@ function openOption(option){
 }
 
 
-// function setVehicleColorRGB(R,G,B){
+function setVehicleColorRGB(R,G,B){
     
-//     if (selectedColor == 'primary'){
-//         $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: true, R: R, G: G, B: B}));
-//     } else {
-//         $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: false, R: R, G: G, B: B}));
-//     }
-
-// }
+    if (selectedColor == 'primary'){
+        $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: true, R: R, G: G, B: B}));
+    } else {
+        $.post("https://qb-vehicleshop/RGBVehicle", JSON.stringify({primary: false, R: R, G: G, B: B}));
+    }
+}
                         
