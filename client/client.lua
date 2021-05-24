@@ -3,7 +3,7 @@ local startCountDown
 local testDriveEntity
 local lastPlayerCoords
 local hashListLoadedOnMemory = {}
-
+local vehcategory = nil
 local inTheShop = false
 local profileName
 local profileMoney
@@ -26,33 +26,32 @@ local rgbSecondaryColorSelected = {
     255,255,255,
 }
 
-local vehicleshopCoords = {
+--[[ local vehicleshopCoords = {
     vector3(-56.49, -1096.58, 26.42),
-}
+} ]]
 
-Citizen.CreateThread(
-    function()
-        while true do
-            Citizen.Wait(3)
-            local ped = PlayerPedId()
-            for i = 1, #vehicleshopCoords do
-            local actualShop = vehicleshopCoords[i]
-            local dist = #(actualShop - GetEntityCoords(ped))
-                if dist <= 50.0 then                    
-                    if dist <= 4.0 then                 
-                        DrawText3Ds(actualShop.x, actualShop.y, actualShop.z,"PRESS ~r~E~w~ TO OPEN VEHICLE SHOP")
-                    end
-                    DrawMarker(23, actualShop.x, actualShop.y, actualShop.z - 0.97, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.7, 200, 10, 10, 100, 0, 0, 0, 0, 0, 0, 0)
-                    if dist <= 2.0 then
-                        if IsControlJustPressed(0, 38) then
-                            OpenVehicleShop()
-                        end
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(3)
+        local ped = PlayerPedId()
+        for i = 1, #Config.Shops do
+        local actualShop = Config.Shops[i].coords
+        local dist = #(actualShop - GetEntityCoords(ped))
+            if dist <= 50.0 then                    
+                if dist <= 4.0 then                 
+                    DrawText3Ds(actualShop.x, actualShop.y, actualShop.z,"PRESS ~r~E~w~ TO OPEN VEHICLE SHOP")
+                end
+                DrawMarker(23, actualShop.x, actualShop.y, actualShop.z - 0.97, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.7, 200, 10, 10, 100, 0, 0, 0, 0, 0, 0, 0)
+                if dist <= 2.0 then
+                    if IsControlJustPressed(0, 38) then
+                        vehcategory = Config.Shops[i].category
+                        OpenVehicleShop()
                     end
                 end
             end
         end
     end
-)
+end)
 
 
 RegisterNetEvent('qb-vehicleshop.receiveInfo')
@@ -405,33 +404,6 @@ function CloseNui()
     inTheShop = false
 end
 
--- function CloseNui()
---     SendNUIMessage(
---         {
---             type = "hide"
---         }
---     )
---     SetNuiFocus(false, false)
-
---     if inTheShop then
---         if lastSelectedVehicleEntity ~= nil then
---             DeleteEntity(lastSelectedVehicleEntity)
---         end
-
---         local  = PlayerPedId()
---     --  SetEntityVisible(ped, true, 0)        
---     --  SetEntityCoords(ped, -44.80, -1097.82, 26.42, 0, 0, 0, false)        
---         RenderScriptCams(false)
---         DestroyAllCams(true)
---         ClearFocus()
---         DisplayHud(true)
---         DisplayRadar(true)
---     end
-
---     inTheShop = false
--- end
-
-
 function DrawText3Ds(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
@@ -465,8 +437,8 @@ local blip
 -- Create Blips
 Citizen.CreateThread(function ()
 
-    for i = 1, #vehicleshopCoords do    
-        local actualShop = vehicleshopCoords[i]
+    for i = 1, #Config.Blip do    
+        local actualShop = Config.Blip[i]
         blip = AddBlipForCoord(actualShop.x, actualShop.y, actualShop.z)
 
         SetBlipSprite (blip, 326)
