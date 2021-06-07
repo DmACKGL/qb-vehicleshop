@@ -233,7 +233,8 @@ $(document).on('keydown', function() {
         case 27: // ESC
             $.post('https://qb-vehicleshop/Close');
             $('body').css("display","none");
-            document.getElementById("top-menu").innerHTML = '';       
+            document.getElementById("top-menu").innerHTML = '';
+            Dealership = {}; 
             break;
         case 9: // TAB
             break;
@@ -289,17 +290,15 @@ $(document).on('keydown', function(ev) {
 });
 
 
-//  document.addEventListener('scroll', function (event) {
-//     if (event.target.id === 'carouselCars') { // or any other filtering condition        
-//         console.log('scrolling', event.target);
-//     }
-// }, true /*Capture event*/);
+/* document.addEventListener('scroll', function (event) {
+    if (event.target.id === 'carouselCars') { // or any other filtering condition        
+        console.log('scrolling', event.target);
+    }
+}, true /*Capture event);
 
-
-
-// $("#carouselCars").on( 'scroll', function(){
-//     console.log('Event Fired');
-//  });
+$("#carouselCars").on( 'scroll', function(){
+    console.log('Event Fired');
+});*/
  
 
 
@@ -381,8 +380,6 @@ $(document).on('mousedown', ".item-cars", function(event){
 (() => {
     Dealership = {};
 
-    
-        
     Dealership.Open = function(data) { 
         for(i = 0; i < (data.length); i++) {   
 
