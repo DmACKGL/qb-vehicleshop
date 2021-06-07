@@ -7,6 +7,10 @@ local vehcategory = nil
 local inTheShop = false
 local profileName
 local profileMoney
+local vehiclesTable = {}
+local provisoryObject = {}
+local rgbColorSelected = {255,255,255,}
+local rgbSecondaryColorSelected = {255,255,255,}
 
 QBCore = nil
 
@@ -17,38 +21,28 @@ Citizen.CreateThread(function ()
 	end
 end)
 
-
-local rgbColorSelected = {
-    255,255,255,
-}
-
-local rgbSecondaryColorSelected = {
-    255,255,255,
-}
-
---[[ local vehicleshopCoords = {
-    vector3(-56.49, -1096.58, 26.42),
-} ]]
-
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(3)
         local ped = PlayerPedId()
+        local sleep = true
         for i = 1, #Config.Shops do
         local actualShop = Config.Shops[i].coords
         local dist = #(actualShop - GetEntityCoords(ped))
-            if dist <= 50.0 then                    
-                if dist <= 4.0 then                 
-                    DrawText3Ds(actualShop.x, actualShop.y, actualShop.z,"PRESS ~r~E~w~ TO OPEN VEHICLE SHOP")
-                end
-                DrawMarker(23, actualShop.x, actualShop.y, actualShop.z - 0.97, 0, 0, 0, 0, 0, 0, 1.0, 1.0, 0.7, 200, 10, 10, 100, 0, 0, 0, 0, 0, 0, 0)
-                if dist <= 2.0 then
+            if dist <= 5 then
+                sleep = false
+                DrawMarker(2, actualShop.x, actualShop.y, actualShop.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.1, 255, 0, 0, 155, 0, 0, 0, 1, 0, 0, 0)
+                if dist <= 2.5 then
+                    DrawText3Ds(actualShop.x, actualShop.y, actualShop.z + 0.2, '[~g~E~w~] - Browse Vehicle Shop')
                     if IsControlJustPressed(0, 38) then
                         vehcategory = Config.Shops[i].category
                         OpenVehicleShop()
                     end
                 end
             end
+        end
+        if sleep then
+            Wait(500)
         end
     end
 end)
@@ -87,38 +81,27 @@ AddEventHandler('qb-vehicleshop.notify', function(type, message)
     ) 
 end)
 
-local vehiclesTable = {}
-
-local provisoryObject = {}
-
 RegisterNetEvent('qb-vehicleshop.vehiclesInfos')
 AddEventHandler('qb-vehicleshop.vehiclesInfos', function() 
-
-    for k,v in pairs(QBCore.Shared.Vehicles) do 
-        vehiclesTable[v.category] = {}   
-    end  
-
-    for k,v in pairs(QBCore.Shared.Vehicles) do 
-        local vehicleModel = GetHashKey(v.model)
-        provisoryObject = {
-            brand = v.brand,
-            name = v.name,
-            price = v.price,
-            model = v.model,
-            qtd = 5000
-        }
-        table.insert(vehiclesTable[v.category], provisoryObject)
+    for k,v in pairs(QBCore.Shared.Vehicles) do
+        if v.shop == vehcategory then
+            vehiclesTable[v.category] = {}
+            provisoryObject = {
+                brand = v.brand,
+                name = v.name,
+                price = v.price,
+                model = v.model,
+                qtd = 5000
+            }
+            table.insert(vehiclesTable[v.category], provisoryObject)
+        end
     end
 end)
 
 function OpenVehicleShop()
     inTheShop = true
-    local ped = PlayerPedId()
-
     TriggerServerEvent("qb-vehicleshop.requestInfo")
-
     Citizen.Wait(1000)
-
     SendNUIMessage(
         {
             data = vehiclesTable,
@@ -128,34 +111,19 @@ function OpenVehicleShop()
             testDrive = Config.TestDrive
         }
     )
-
     SetNuiFocus(true, true)
-
     RequestCollisionAtCoord(x, y, z)
-
-    --SetEntityVisible(ped, false, 0)
-    --SetEntityCoords(ped, 404.90, -949.58, -99.71, 0, 0, 0, false)
-
     cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", 974.1, -2997.94, -39.00, 216.5, 0.00, 0.00, 60.00, false, 0)
     PointCamAtCoord(cam, 979.1, -3003.00, -40.50)
-
     SetCamActive(cam, true)
     RenderScriptCams(true, true, 1, true, true)
-        
     SetFocusPosAndVel(974.1, -2997.94, -39.72, 0.0, 0.0, 0.0)
-
     DisplayHud(false)
     DisplayRadar(false)
-
-    while inTheShop do
-        Citizen.Wait(0)        
-   --    DrawLightWithRange(404.99, -949.60, -98.98, 255, 255, 255, 20.000, 100.000)
-    end
 
     if lastSelectedVehicleEntity ~= nil then
         DeleteEntity(lastSelectedVehicleEntity)
     end
-
 end
 
 function updateSelectedVehicle(model)
@@ -402,6 +370,7 @@ function CloseNui()
         DisplayRadar(true)
     end
     inTheShop = false
+    vehiclesTable = {}
 end
 
 function DrawText3Ds(x,y,z, text)
@@ -409,7 +378,7 @@ function DrawText3Ds(x,y,z, text)
     local px,py,pz=table.unpack(GetGameplayCamCoords())
     
     SetTextScale(0.35, 0.35)
-    SetTextFont(4)
+    SetTextFont(1)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
     SetTextEntry("STRING")
