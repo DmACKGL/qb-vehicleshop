@@ -83,15 +83,21 @@ end)
 
 RegisterNetEvent('qb-vehicleshop.vehiclesInfos')
 AddEventHandler('qb-vehicleshop.vehiclesInfos', function() 
+    print(vehcategory)
+    for k,v in pairs(QBCore.Shared.Vehicles) do 
+        if v.shop == vehcategory then
+            vehiclesTable[v.category] = {}   
+        end
+    end 
+
     for k,v in pairs(QBCore.Shared.Vehicles) do
         if v.shop == vehcategory then
-            vehiclesTable[v.category] = {}
             provisoryObject = {
                 brand = v.brand,
                 name = v.name,
                 price = v.price,
                 model = v.model,
-                qtd = 5000
+                qtd = 5000,
             }
             table.insert(vehiclesTable[v.category], provisoryObject)
         end
@@ -101,6 +107,7 @@ end)
 function OpenVehicleShop()
     inTheShop = true
     TriggerServerEvent("qb-vehicleshop.requestInfo")
+    TriggerEvent('qb-vehicleshop.vehiclesInfos')
     Citizen.Wait(1000)
     SendNUIMessage(
         {
@@ -371,6 +378,7 @@ function CloseNui()
     end
     inTheShop = false
     vehiclesTable = {}
+    provisoryObject = {}
 end
 
 function DrawText3Ds(x,y,z, text)

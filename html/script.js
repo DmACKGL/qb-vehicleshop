@@ -1,8 +1,8 @@
-var categoryVehicleSelected = "all";
+var categoryVehicleSelected = "muscle";
 var vehicleSelected = {};
 var isEnableTestDrive = false;
 
-var dataVehicles = []
+var dataVehicles = [];
 var handlingVehicle = [];
 
 var selectedColor = "primary";
@@ -88,7 +88,7 @@ window.addEventListener('message', function(event) {
         handlingVehicle = data.data;
         
         vehicleSelected.sale = vehicleSelected.sale*1000
-        var priceVehicle = vehicleSelected.sale.toLocaleString('pt-br');
+        var priceVehicle = vehicleSelected.sale.toLocaleString('en-US');
 
         $('#contentVehicle').append(`
                     <div class="row spacebetween">
@@ -164,7 +164,7 @@ function menuVehicle(event) {
     document.getElementById("vehiclebrand").innerHTML = '';
     document.getElementById("carouselCars").innerHTML = '';
 
-    dataVehicles = [] 
+    dataVehicles = [];
     
     $.post('https://qb-vehicleshop/menuSelected', JSON.stringify({menuId: categoryVehicleSelected.toLowerCase()}));
 }
@@ -224,8 +224,6 @@ function buyVehicle(option) {
     }   
 }
 
-
-
 var scrollAmount = 0
 
 $(document).on('keydown', function() {
@@ -234,7 +232,6 @@ $(document).on('keydown', function() {
             $.post('https://qb-vehicleshop/Close');
             $('body').css("display","none");
             document.getElementById("top-menu").innerHTML = '';
-            Dealership = {}; 
             break;
         case 9: // TAB
             break;
@@ -247,18 +244,28 @@ $(document).on('keydown', function() {
             $.post('https://qb-vehicleshop/rotate', JSON.stringify({key: "right"}))
             break;
         case 39: 
-            scrollAmount = scrollAmount + 300
+            scrollAmount = scrollAmount + 200
             $('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
             // seta direita
             break;
         case 37:
-            scrollAmount = scrollAmount - 300
+            scrollAmount = scrollAmount - 200
             $('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
             // seta esquerda
             break;
     }
 });
 
+document.addEventListener('wheel', function(event) {
+    if (event.deltaY < 0) { // Scroll Up
+        scrollAmount = scrollAmount - 200
+        $('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
+    }
+    else if (event.deltaY > 0) { // Scroll Down
+        scrollAmount = scrollAmount + 200
+        $('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
+    }
+});
 
 $(document).on('keydown', function(ev) {
     var input = $(ev.target);
@@ -289,20 +296,6 @@ $(document).on('keydown', function(ev) {
 
 });
 
-
-/* document.addEventListener('scroll', function (event) {
-    if (event.target.id === 'carouselCars') { // or any other filtering condition        
-        console.log('scrolling', event.target);
-    }
-}, true /*Capture event);
-
-$("#carouselCars").on( 'scroll', function(){
-    console.log('Event Fired');
-});*/
- 
-
-
-
 $(document).on('mousedown', ".item-cars", function(event){
 
     switch(event.which) {        
@@ -332,19 +325,17 @@ $(document).on('mousedown', ".item-cars", function(event){
                 
                 var dataCar = $(event.currentTarget).find('.specification').find('span');
 
-                var scroll =  $(event.currentTarget).position();
+                //var scroll =  $(event.currentTarget).position();
 
+                //if(scroll.left > 500) {
+                //    scrollAmount = scrollAmount + scroll.left
+                //} else if( scroll.left < 0 ) {
+                //    scrollAmount = scrollAmount - scrollAmount/2 + scroll.left
+                //} else {
+                //    scrollAmount = scrollAmount - scroll.left
+                //}           
 
-        
-                if(scroll.left > 500) {
-                    scrollAmount = scrollAmount + scroll.left
-                } else if( scroll.left < 0 ) {
-                    scrollAmount = scrollAmount - scrollAmount/2 + scroll.left
-                } else {
-                    scrollAmount = scrollAmount - scroll.left
-                }           
-
-                $('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
+                //$('.carousel-cars').animate({scrollLeft:scrollAmount}, 'fast');
 
                 $('.modal').css("display","none");
 
@@ -431,15 +422,13 @@ $(document).on('mousedown', ".item-cars", function(event){
             }            
         }     
     }
-    Dealership.Open(dataVehicles)
+    Dealership.Open(dataVehicles);
 })();
 
 
 
 function openOption(option){
-
     pickr.show();
-  
 }
 
 

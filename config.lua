@@ -24,11 +24,11 @@ Config.Shops = {
     },
     [3] = {
         category = 'ambulance',
-        coords = vector3(0, 0, 0)
+        coords = vector3(307.7, -1433.4, 30.0)
     },
     [4] = {
         category = 'mechanic',
-        coords = vector3(0, 0, 0)
+        coords = vector3(-97.5, 6496.1, 30.4)
     },
     [5] = {
         category = 'motorcycle',

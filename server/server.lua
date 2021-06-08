@@ -9,7 +9,6 @@ AddEventHandler('qb-vehicleshop.requestInfo', function()
     local rows    
 
     TriggerClientEvent('qb-vehicleshop.receiveInfo', src, xPlayer.PlayerData.money['bank'], xPlayer.PlayerData.firstname)
-    TriggerClientEvent("qb-vehicleshop.vehiclesInfos", src , resultVehicles)    
     TriggerClientEvent("qb-vehicleshop.notify", src, 'error', 'Use A and D To Rotate')
 end)
 
