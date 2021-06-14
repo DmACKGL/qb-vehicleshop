@@ -13,7 +13,7 @@ AddEventHandler('qb-vehicleshop.requestInfo', function()
 end)
 
 QBCore.Functions.CreateCallback('qb-vehicleshop.isPlateTaken', function (source, cb, plate)
-    QBCore.Functions.ExecuteSql(true, "SELECT * FROM `player_vehicles` WHERE `plate` = '"..plate.."'", function(result)
+    QBCore.Functions.ExecuteSql(true, {['a'] = plate}, "SELECT * FROM `player_vehicles` WHERE `plate` = @a", function(result)
         cb(result[1] ~= nil)
     end)
 end)
@@ -32,7 +32,19 @@ AddEventHandler('qb-vehicleshop.CheckMoneyForVeh', function(veh, price, name, ve
             stateVehicle = 1
         end
 
-        QBCore.Functions.ExecuteSql(false, "INSERT INTO `player_vehicles` (`steam`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `state`) VALUES ('"..xPlayer.PlayerData.steam.."', '"..xPlayer.PlayerData.citizenid.."', '"..veh.."', '"..GetHashKey(veh).."', '"..vehiclePropsjson.."', '"..vehicleProps.plate.."', '"..stateVehicle.."')")
+        QBCore.Functions.ExecuteSql(
+            false, 
+            {
+                ['a'] = xPlayer.PlayerData.steam,
+                ['b'] = xPlayer.PlayerData.citizenid,
+                ['c'] = veh,
+                ['d'] = GetHashKey(veh),
+                ['e'] = vehiclePropsjson,
+                ['f'] = vehicleProps.plate,
+                ['g'] = stateVehicle
+            }, 
+            "INSERT INTO `player_vehicles` (`steam`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `state`) VALUES (@a, @b, @c, @d, @e, @f, @g)"
+        )
         TriggerClientEvent("qb-vehicleshop.successfulbuy", source, name, vehicleProps.plate, price)
         TriggerClientEvent('qb-vehicleshop.receiveInfo', source, xPlayer.PlayerData.money['bank'])    
         TriggerClientEvent('qb-vehicleshop.spawnVehicle', source, veh, vehicleProps.plate)
