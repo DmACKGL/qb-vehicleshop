@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `player_vehicles` (
-  `#` int(11) NOT NULL AUTO_INCREMENT,
-  `steam` varchar(50) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `license` varchar(50) DEFAULT NULL,
   `citizenid` varchar(50) DEFAULT NULL,
   `vehicle` varchar(50) DEFAULT NULL,
   `hash` varchar(50) DEFAULT NULL,
@@ -15,8 +15,12 @@ CREATE TABLE IF NOT EXISTS `player_vehicles` (
   `depotprice` int(11) NOT NULL DEFAULT 0,
   `drivingdistance` int(50) DEFAULT NULL,
   `status` text DEFAULT NULL,
-  PRIMARY KEY (`#`),
+  `balance` int(11) NOT NULL DEFAULT 0,
+  `paymentamount` int(11) NOT NULL DEFAULT 0,
+  `paymentsleft` int(11) NOT NULL DEFAULT 0,
+  `financetime` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
   KEY `plate` (`plate`),
   KEY `citizenid` (`citizenid`),
-  KEY `steam` (`steam`)
-) ENGINE=InnoDB AUTO_INCREMENT=2432 DEFAULT CHARSET=utf8mb4;
+  KEY `license` (`license`)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
