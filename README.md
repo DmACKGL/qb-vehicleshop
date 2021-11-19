@@ -6,7 +6,10 @@ Vehicle Shop for QB-Core Framework :car:
 - [qb-garages](https://github.com/qbcore-framework/qb-garages) - For the garages
 - [qb-vehiclekeys](https://github.com/qbcore-framework/qb-vehiclekeys) - For the vehicle keys
 
-## If you are using the latest qb-core then you need to do some modification or just just use my fork [qb-core](https://github.com/wtftanveer/qb-core)
+## modification
+If you are using the latest [qb-core](https://github.com/qbcore-framework/qb-core) then you need to do some modification or just just use my fork [qb-core](https://github.com/wtftanveer/qb-core)
+
+add this into qb-core/server/function.lua
 ```
 QBCore.Functions.ExecuteSql = function(wait, query, cb)
 	local rtndata = {}
