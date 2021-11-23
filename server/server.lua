@@ -30,7 +30,15 @@ AddEventHandler('qb-vehicleshop.CheckMoneyForVeh', function(veh, price, name, ve
             stateVehicle = 1
         end
 
-        QBCore.Functions.ExecuteSql(false, "INSERT INTO `player_vehicles` (`license`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `state`) VALUES ('"..xPlayer.PlayerData.license.."', '"..xPlayer.PlayerData.citizenid.."', '"..veh.."', '"..GetHashKey(veh).."', '"..vehiclePropsjson.."', '"..vehicleProps.plate.."', '"..stateVehicle.."')")
+        exports.oxmysql:execute("INSERT INTO `player_vehicles` (`license`, `citizenid`, `vehicle`, `hash`, `mods`, `plate`, `state`) VALUES(@license, @citizenid, @vehicle, @hash, @mods, @plate, @state)", {
+            ['@license'] = xPlayer.PlayerData.license,
+            ['@citizenid'] = xPlayer.PlayerData.citizenid,
+            ['@vehicle'] = veh,
+            ['@hash'] = GetHashKey(veh),
+            ['@mods'] = json.encode(vehicleProps),
+            ['@plate'] = vehicleProps.plate,
+            ['@state'] = stateVehicle,
+        })
         TriggerClientEvent("qb-vehicleshop.successfulbuy", source, name, vehicleProps.plate, price)
         TriggerClientEvent('qb-vehicleshop.receiveInfo', source, xPlayer.PlayerData.money['bank'])    
         TriggerClientEvent('qb-vehicleshop.spawnVehicle', source, veh, vehicleProps.plate)
