@@ -1,6 +1,8 @@
 # qb-vehicleshop
 Vehicle Shop for QB-Core Framework :car:
 
+# notice : remember this resource dosen't belonge to me, all I did is a little modification with latest [qb-core](https://github.com/qbcore-framework/qb-core)
+
 # join my discord https://discord.gg/ByduBDA
 
 ## Dependencies
