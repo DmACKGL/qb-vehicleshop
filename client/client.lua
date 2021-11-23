@@ -375,7 +375,7 @@ function CloseNui()
 end
 
 
-function DrawText3D(x, y, z, text)
+function DrawText3Ds(x, y, z, text)
     SetTextScale(0.35, 0.35)
     SetTextFont(4)
     SetTextProportional(1)
