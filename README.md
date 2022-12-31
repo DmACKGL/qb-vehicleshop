@@ -1,9 +1,9 @@
 # qb-vehicleshop
 Vehicle Shop for QB-Core Framework :car:
 
+## Changes by BrianTU#0001
 This was modified for my personal server. This does not provide all the features found in the base qb-core vehicleshop, so if you are looking for some features rename this resource and use it together.
 
-## Changes by BrianTU#0001
 ### Features
 - Blacklisted vehicles,
 - Limited quantity vehicles,
@@ -21,6 +21,9 @@ This was modified for my personal server. This does not provide all the features
 - Recoded UI scroll to reduce/eliminate scroll lag,
 - Reconfigured UI to use manufacturer logo's,
 - Included 320+ real manufacturer logo's,
+
+### Current bugs
+- You may experiance UI lag when scrolling. My fix is not a 100% fix, however there is better scrolling moments than there is bad.
 
 ## Screenshots
 ![Vehicle shop](https://i.imgur.com/6WOs7Xu.png)
