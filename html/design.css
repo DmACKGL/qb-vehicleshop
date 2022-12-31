@@ -6,17 +6,17 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Teko', sans-serif;
-    display: none; 
-    overflow:hidden;     
-}        
+    display: none;
+    overflow:hidden;
+}
 
 *{
     transition: 0.5s all;
 }
 
 .container {
-    width:100%; 
-    height:100%; 
+    width:100%;
+    height:100%;
 }
 
 .container .column {
@@ -35,7 +35,7 @@ body {
 }
 
 .container .top-container {
-    /* border: 1px solid blue; */          
+    /* border: 1px solid blue; */
 
     position: relative;
     display: flex;
@@ -51,7 +51,7 @@ body {
 
 .container .top-container .top-menu{
     display:flex;
-    position:relative;   
+    position:relative;
     flex-wrap: wrap;
     letter-spacing: 1px;
     align-items: flex-end;
@@ -111,7 +111,7 @@ body {
     margin-right: 10px;
     font-size: 12px;
     letter-spacing: 2px;
-}       
+}
 
 .container .top-container .right-container .column {}
 
@@ -122,7 +122,7 @@ body {
 
 .container .top-container .right-container .row .undercoin{
     color:white;
-    border-radius: 50%;     
+    border-radius: 50%;
     padding: 1px 8px;
     font-size: 15px;
     font-style: normal;
@@ -145,7 +145,7 @@ body {
     margin-right: 5px;
 }
 /* .container .top-container .right-container .row span:nth-child(2) {
-    
+
 } */
 
 .container .top-container .right-container .row:nth-child(2) span:nth-child(3) {
@@ -214,7 +214,7 @@ body {
 .container .middle-right-container {
     /* border: 1px solid green; */
     position: absolute;
-    transform: translateY(-30%);    
+    transform: translateY(-30%);
     color: rgb(204, 197, 191);
     width: 250px;
     padding-top: 3vh;
@@ -278,7 +278,7 @@ body {
     /* border: 1px solid green; */
     top: 5%;
     left: 25px;
-    transform: translateY(-30%);    
+    transform: translateY(-30%);
     color: rgb(204, 197, 191);
     padding-left:5vw;
     overflow: hidden;
@@ -305,7 +305,7 @@ body {
     margin-bottom: 20px;
     text-align: right;
 }
-        
+
 .container .middle-right-container .priceVehicle {
     width:100%;
     text-align: right;
@@ -336,7 +336,7 @@ body {
 .container .middle-right-container .bar .data {
     background: rgba(0,0,0,0.8);
     color:white;
-    width: 20px;            
+    width: 20px;
     padding:0 0;
     text-align: center;
 }
@@ -471,7 +471,7 @@ body {
     top:23vh;
     left:35vw;
     z-index:0;
-    font-family: 'Teko', sans-serif;  
+    font-family: 'Teko', sans-serif;
     width: 50vh;
     height: 30vh;
     max-width: 350px;
@@ -495,7 +495,7 @@ body {
     font-weight: 200;
     font-size: 1.2em;
     line-height: 0.5;
-    margin:0;            
+    margin:0;
     margin-top:-1px;
     margin-bottom:10px;
 }
@@ -503,7 +503,7 @@ body {
 .container .modal .modal-content .vehicle{
     font-weight: 200;
     font-size: 0.8em;
-    margin:0;            
+    margin:0;
     margin-top:-1px;
     margin-bottom:10px;
 }
@@ -541,17 +541,17 @@ body {
     margin:0;
     font-size: 1.8vh;
     text-decoration: line-through;
-}   
+}
 
 .container .modal .modal-footer .modal-buttons{
     width:45%;
-    display:flex;            
+    display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 .container .modal .modal-footer .modal-buttons div{
-    display:flex;            
+    display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -568,11 +568,11 @@ body {
     border-radius:5px;
     background:black;
 }
-.container .modal .modal-footer .modal-buttons span{            
+.container .modal .modal-footer .modal-buttons span{
     font-size:0.7em;
 }
 
-.container .modal .background-circle{   
+.container .modal .background-circle{
     border-radius:15px 15px 0 0 ;
     position:absolute;
     background: rgba(0,0,0,0.4);
@@ -580,7 +580,7 @@ body {
     left: 0px;
     right: 0px;
     bottom: 20px;
-    clip-path: ellipse(100% 63% at 27% 0%);    
+    clip-path: ellipse(100% 63% at 27% 0%);
     z-index:1;
 }
 
@@ -608,14 +608,14 @@ input[type="button"]
     color:white;
     text-align: center;
     font-family: 'Teko', sans-serif;
-}   
+}
 
 
 .theme-container{
     padding: 5px 15px;
     margin-bottom: 5px;
  }
- 
+
  .theme-container button {
     margin-right: 30px;
     color:white;
@@ -634,12 +634,12 @@ input[type="button"]
 
 .theme-container h3 {
     font-weight: 500;
-    color: #36425b;            
+    color: #36425b;
 }
 
 .pickr-container {
     margin-top: 0.5em;
-    
+
     overflow: hidden;
 }
 .pcr-app{
@@ -651,7 +651,7 @@ input[type="button"]
 }
 
 .pcr-button{
-    content:'color';    
+    content:'color';
     opacity:0.0;
 }
 
@@ -660,31 +660,21 @@ input[type="button"]
 .carousel-cars{
     display:flex;
     flex-direction: row;
-    overflow-x: hidden; 
-    overflow-y: hidden;    
+    overflow-x: hidden;
+    overflow-y: hidden;
     height:fit-content;
-    align-items: center;    
+    align-items: center;
     border-radius: 15px;
 }
 
 .item-cars{
-    display:flex;    
+    display:flex;
     margin-right:10px;
     margin-left:5px;
-    transition: all 0.5s;    
+    transition: all 0.5s;
     border-radius: 15px;
     width:265px;
     height:164px;
-}
-
-.item-cars:hover{
-    transform: scale(1.1);    
-    margin-top: 1vh;
-    margin-right:2vh;
-    margin-left:2vh;
-    margin-bottom:1vh;
-    transition: all 0.5s;
-    border-radius: 15px;
 }
 
 .sold-out-text{
@@ -695,21 +685,17 @@ input[type="button"]
      text-align: center;
      font-weight: 800;
      margin-top: 30px;
-     
+
 }
 
 .selectedVehicle{
-    padding: 0.5vh;
     background: rgb(255,109,58);
-    background: linear-gradient(90deg, rgba(255,109,58,1) 0%, rgba(255,160,34,1) 74%, rgba(255,109,58,1) 99%);
-    transform: scale(1.1);    
+    transform: scale(1.1);
     margin-top: 1vh;
     margin-right:2vh;
     margin-left:2vh;
     margin-bottom:1vh;
 }
-
-
 
 .soldOut{
     position:absolute;
@@ -719,7 +705,7 @@ input[type="button"]
     color:white;
     background: rgba(255,0,0,0.2);
     width:265px;
-    height:165px;    
+    height:165px;
     letter-spacing: 2px;
     border-radius: 15px;
 }
@@ -730,7 +716,7 @@ input[type="button"]
 }
 
 #vehiclebrand{
-    width:10vh;    
+    width:10vh;
     height:10vh;
     display:flex;
     align-items: center;
@@ -742,7 +728,7 @@ input[type="button"]
 
     max-height: 65px;
     max-width: 65px;
-    
+
 }
 
 #actionButton{
@@ -762,7 +748,7 @@ input[type="button"]
     padding: 5px 10px;
     font-family: 'Teko', sans-serif !important;
     color:white;
-    border: 1px solid rgba(0,0,0,0);    
+    border: 1px solid rgba(0,0,0,0);
     border-radius: 100px;
 }
 
@@ -776,19 +762,21 @@ input[type="button"]
 .img-fluid{
     width:328px;
     height:168px;
-    background: black;
+    background: rgb(0, 0, 0, 0.25);
     background-image: url('../imgs/328px-Adder.png');
-    background-size: 130%;
+    background-size: 35%;
     background-position: center;
+    background-repeat: no-repeat;
     border-radius: 18px;
+    filter: grayscale(1);
 }
 
 .exibeName{
     position: absolute;
     right: 15px;
     bottom: 10px;
-    font-size: 0.8em;
-    color: rgba(255,255,255, 0.5);
+    font-size: 1.2em;
+    color: rgba(255,255,255);
 }
 
 .button-change{
