@@ -26,8 +26,8 @@ This was modified for my personal server. This does not provide all the features
 - You may experiance UI lag when scrolling. My fix is not a 100% fix, however there is better scrolling moments than there is bad.
 
 ## Screenshots
-![Vehicle shop](https://i.imgur.com/6WOs7Xu.png)
-![Purchase confirmation](https://imgur.com/k6L3vQE.png)
+![Vehicle shop sold out](https://cdn.discordapp.com/attachments/995530981400395847/1056051686642286613/image.png)
+![Boat shop](https://cdn.discordapp.com/attachments/995530981400395847/1056051686927519824/image.png)
 ![Test drive](https://imgur.com/omvRCbG.png)
 
 ## Dependencies
